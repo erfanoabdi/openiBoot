@@ -1552,7 +1552,9 @@ int h2fmi_read_multi(h2fmi_struct_t *_fmi, uint16_t _num_pages, uint16_t *_chips
 	}
 
 	//bufferPrintf("fmi: state machine done.\r\n");
-
+	uint64_t start = timer_get_system_microtime();
+		while(!has_elapsed(start, 100));
+		
 	if(_fmi->current_status != 0)
 	{
 		if(h2fmi_dma_wait(_fmi->dma0, 2000000) != 0
@@ -3241,7 +3243,7 @@ void h2fmi_init()
 
 	free(buff1);
 }
-//MODULE_INIT(h2fmi_init);
+MODULE_INIT(h2fmi_init);
 
 static error_t cmd_nand_read(int argc, char** argv)
 {
