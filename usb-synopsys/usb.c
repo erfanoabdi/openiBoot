@@ -1206,6 +1206,7 @@ static void usbIRQHandler(uint32_t token)
 				uint32_t totalLength;
 				USBStringDescriptor* strDesc;
 				if(USBSetupPacketRequestTypeType(setupPacket->bmRequestType) != USBSetupPacketVendor) {
+					bufferPrintf("USB: Time Waster !\n\r"); //FIXME:make some time waster at best location here (remove it to undrstand what i'm saying)
 					switch(setupPacket->bRequest) {
 						case USB_GET_DESCRIPTOR:
 							length = setupPacket->wLength;
